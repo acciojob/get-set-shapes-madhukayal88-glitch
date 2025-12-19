@@ -1,8 +1,38 @@
-//complete this code
-class Rectangle {}
+// Rectangle constructor
+function Rectangle(width, height) {
+    this._width = width;
+    this._height = height;
+}
 
-class Square extends Animal {}
+// Getter for width
+Object.defineProperty(Rectangle.prototype, "width", {
+    get: function () {
+        return this._width;
+    }
+});
 
-// Do not change the code below this line
-window.Rectangle = Rectangle;
-window.Square = Square;
+// Getter for height
+Object.defineProperty(Rectangle.prototype, "height", {
+    get: function () {
+        return this._height;
+    }
+});
+
+// Method to calculate area
+Rectangle.prototype.getArea = function () {
+    return this._width * this._height;
+};
+
+// Square constructor (inherits from Rectangle)
+function Square(side) {
+    Rectangle.call(this, side, side);
+}
+
+// Inherit Rectangle prototype
+Square.prototype = Object.create(Rectangle.prototype);
+Square.prototype.constructor = Square;
+
+// Method to calculate perimeter
+Square.prototype.getPerimeter = function () {
+    return 4 * this._width;
+};
